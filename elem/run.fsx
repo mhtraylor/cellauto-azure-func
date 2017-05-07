@@ -18,6 +18,7 @@ let Run (req: HttpRequestMessage, log: TraceWriter) =
     async {
         log.Info("Webhook was triggered!")
         let! json = req.Content.ReadAsStringAsync() |> Async.AwaitTask
+        log.Info(sprintf "Request JSON: %s" json)
         try
             let elemReq = JsonConvert.DeserializeObject<ElemRequest>(json)
             return req.CreateResponse(HttpStatusCode.OK, { message = "A-OK" })
