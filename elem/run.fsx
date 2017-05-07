@@ -21,7 +21,7 @@ let Run (req: HttpRequestMessage, log: TraceWriter) =
         log.Info(sprintf "Request JSON: %s" json)
         try
             let elemReq = JsonConvert.DeserializeObject<ElemRequest>(json)
-            log.Info(sprintf ("Request serialized: %A" elemReq))
+            log.Info(sprintf "Request serialized: %A" elemReq)
             return req.CreateResponse(HttpStatusCode.OK, { message = "A-OK" })
         with _ ->
             return req.CreateResponse(HttpStatusCode.BadRequest)
